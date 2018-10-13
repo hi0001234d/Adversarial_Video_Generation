@@ -283,16 +283,16 @@ class GeneratorModel:
         # User output
         ##
         if global_step % c.STATS_FREQ == 0:
-            print 'GeneratorModel : Step ', global_step
-            print '                 Global Loss    : ', global_loss
-            print '                 PSNR Error     : ', global_psnr_error
-            print '                 Sharpdiff Error: ', global_sharpdiff_error
+            print ('GeneratorModel : Step ', global_step)
+            print ('                 Global Loss    : ', global_loss)
+            print ('                 PSNR Error     : ', global_psnr_error)
+            print ('                 Sharpdiff Error: ', global_sharpdiff_error)
         if global_step % c.SUMMARY_FREQ == 0:
             self.summary_writer.add_summary(summaries, global_step)
-            print 'GeneratorModel: saved summaries'
+            print ('GeneratorModel: saved summaries')
         if global_step % c.IMG_SAVE_FREQ == 0:
-            print '-' * 30
-            print 'Saving images...'
+            print ('-' * 30)
+            print ('Saving images...')
 
             # if not adversarial, we didn't get the preds for each scale net before for the
             # discriminator prediction, so do it now
@@ -337,8 +337,8 @@ class GeneratorModel:
                     imsave(path + '_gen.png', gen_img)
                     imsave(path + '_gt.png', gt_img)
 
-            print 'Saved images!'
-            print '-' * 30
+            print ('Saved images!')
+            print ('-' * 30)
 
         return global_step
 
@@ -360,8 +360,8 @@ class GeneratorModel:
         if num_rec_out < 1:
             raise ValueError('num_rec_out must be >= 1')
 
-        print '-' * 30
-        print 'Testing:'
+        print ('-' * 30)
+        print ('Testing:')
 
         ##
         # Split into inputs and outputs
@@ -396,9 +396,9 @@ class GeneratorModel:
             rec_preds.append(preds)
             rec_summaries.append(summaries)
 
-            print 'Recursion ', rec_num
-            print 'PSNR Error     : ', psnr
-            print 'Sharpdiff Error: ', sharpdiff
+            print ('Recursion ', rec_num)
+            print ('PSNR Error     : ', psnr)
+            print ('Sharpdiff Error: ', sharpdiff)
 
         # write summaries
         # TODO: Think of a good way to write rec output summaries - rn, just using first output.
@@ -425,4 +425,4 @@ class GeneratorModel:
                     imsave(os.path.join(pred_dir, 'gen_' + str(rec_num) + '.png'), gen_img)
                     imsave(os.path.join(pred_dir, 'gt_' + str(rec_num) + '.png'), gt_img)
 
-        print '-' * 30
+        print ('-' * 30)
