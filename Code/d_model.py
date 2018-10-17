@@ -54,7 +54,7 @@ class DiscriminatorModel:
             ##
 
             self.scale_nets = []
-            for scale_num in xrange(self.num_scale_nets):
+            for scale_num in range(self.num_scale_nets):
                 with tf.name_scope('scale_net_' + str(scale_num)):
                     scale_factor = 1. / 2 ** ((self.num_scale_nets - 1) - scale_num)
                     self.scale_nets.append(DScaleModel(scale_num,
@@ -66,7 +66,7 @@ class DiscriminatorModel:
 
             # A list of the prediction tensors for each scale network
             self.scale_preds = []
-            for scale_num in xrange(self.num_scale_nets):
+            for scale_num in range(self.num_scale_nets):
                 self.scale_preds.append(self.scale_nets[scale_num].preds)
 
             ##
@@ -120,7 +120,7 @@ class DiscriminatorModel:
         ##
         # Create discriminator feed dict
         ##
-        for scale_num in xrange(self.num_scale_nets):
+        for scale_num in range(self.num_scale_nets):
             scale_net = self.scale_nets[scale_num]
 
             # resize gt_output_frames
