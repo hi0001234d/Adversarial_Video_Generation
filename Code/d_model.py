@@ -179,9 +179,9 @@ class DiscriminatorModel:
         ##
 
         if global_step % c.STATS_FREQ == 0:
-            print 'DiscriminatorModel: step %d | global loss: %f' % (global_step, global_loss)
+            print ('DiscriminatorModel: step %d | global loss: %f', global_step, global_loss )
         if global_step % c.SUMMARY_FREQ == 0:
-            print 'DiscriminatorModel: saved summaries'
+            print ('DiscriminatorModel: saved summaries')
             self.summary_writer.add_summary(summaries, global_step)
 
         return global_step
